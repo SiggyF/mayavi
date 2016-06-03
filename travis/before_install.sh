@@ -13,6 +13,6 @@ else
     ccache -s
     export PATH=/usr/lib/ccache:${PATH}
     pip install --upgrade pip
-    xpra --xvfb="Xorg +extension GLX -config /etc/xpra/xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :9
-    export DISPLAY=:9
+    xpra --xvfb="Xorg +extension GLX -config /etc/xpra/xorg.conf -logfile ${HOME}/.xpra/xorg.log"  start :99
+    export DISPLAY=:99
 fi
