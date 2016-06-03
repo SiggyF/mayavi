@@ -1,5 +1,5 @@
-if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then 
-    brew update         
+if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew update
     brew tap homebrew/science
     brew tap homebrew/python
     brew install python
@@ -13,6 +13,6 @@ else
     ccache -s
     export PATH=/usr/lib/ccache:${PATH}
     pip install --upgrade pip
-    export DISPLAY=:99.0
-    sh -e /etc/init.d/xvfb start
+    xpra --xvfb=\"Xorg +extension GLX -config `pwd`/test/dummy.xorg.conf -logfile ${HOME}/.xpra/xorg.log\"  start :9
+    export DISPLAY=:9
 fi

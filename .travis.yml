@@ -29,7 +29,7 @@ matrix:
       language: python
       python: 2.7
       env: VTK_VERSION=7.0 ETS_TOOLKIT=wx
-  allow_failures:      
+  allow_failures:
     - os: osx
       language: generic
       env: VTK_VERSION=5.8 ETS_TOOLKIT=qt4
@@ -47,7 +47,7 @@ matrix:
       language: python
       python: 2.7
       env: VTK_VERSION=7.0 ETS_TOOLKIT=wx
-    
+
 # Travis Ubuntu 12 does not allow python-pyside
 addons:
   apt:
@@ -58,6 +58,8 @@ addons:
     - python-imaging
     - python-pip
     - python-wxtools
+    - xpra
+    - xserver-xorg-video-dummy
     - ccache
 cache:
   directories:
@@ -79,6 +81,8 @@ script:
   # And PyQt hangs during event loop
   - if [[ ${ETS_TOOLKIT} == "wx" ]]; then sh travis/travis-run-integration-tests.sh; fi
   - coverage combine
+after_script:
+  - xpra stop :9
 after_success:
   - pip install codecov
   - codecov
