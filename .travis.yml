@@ -75,7 +75,7 @@ install:
   - python setup.py develop
 script:
   - coverage erase
-  - coverage run -p -m nose.core -v tvtk/tests
+  - DISPLAY=:99 coverage run -p -m nose.core -v tvtk/tests
   - coverage run -p -m nose.core -v mayavi
   # We can't run the integrationtests on travis with qt because python-pyside is forbidden
   # And PyQt hangs during event loop
